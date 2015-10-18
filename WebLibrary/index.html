@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Color Voter!</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="Content/main.css" rel="stylesheet" />
+</head>
+<body ng-app="colorVoter">
+
+<div class="container text-center"
+     ng-controller="VotesController as votesCtrl"
+     ng-cloak>
+
+    <div class="well well-sm"
+         ng-form="colorForm">
+        <div class="form-group">
+            <h3>Vote for your favorite color!</h3>
+            <input type="color" class="form-control" name="color"
+                   required
+                   ng-model="votesCtrl.color"
+                   ng-pattern="/#([A-Fa-f0-9]{6})/" />
+            <div class="text-danger" role="alert"
+                 ng-messages="colorForm.color.$error">
+                <span ng-message="required">A color is required to vote</span>
+                <span ng-message="pattern">Colors must be entered #rrggbb if no color-picker is present</span>
+            </div>
+        </div>
+
+        <button class="btn btn-success"
+                ng-disabled="!votesCtrl.hubConnected"
+                ng-click="votesCtrl.registerVote()">
+            Vote for the selected color!
+        </button>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Votes</th>
+                <th>Color</th>
+                <th>Upvote</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="vote in votesCtrl.votes | orderBy:'-Value'">
+                <td>{{vote.Value}}</td>
+                <td ng-style="{'background-color': vote.Key}"></td>
+                <td>
+                    <button class="btn btn-default"
+                            ng-click="votesCtrl.upvote(vote.Key)">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!--SignalR has a dependency on jQuery-->
+<script src="Scripts/jquery-2.1.4.min.js"></script>
+<!--SignalR JS Script-->
+<script src="Scripts/jquery.signalR-2.2.0.min.js"></script>
+<!--Angular JS and messages-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-messages.js"></script>
+<!--Reference script that SignalR will create for us automatically-->
+<script src="signalr/hubs"></script>
+<!--Reference our voter.js script-->
+<script src="Scripts/voter.js"></script>
+</body>
+</html>

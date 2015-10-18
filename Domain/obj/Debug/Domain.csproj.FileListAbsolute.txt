@@ -1,0 +1,5 @@
+c:\users\ursin\documents\visual studio 2013\Projects\ColorVoter\Domain\bin\Debug\Domain.dll
+c:\users\ursin\documents\visual studio 2013\Projects\ColorVoter\Domain\bin\Debug\Domain.pdb
+c:\users\ursin\documents\visual studio 2013\Projects\ColorVoter\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+c:\users\ursin\documents\visual studio 2013\Projects\ColorVoter\Domain\obj\Debug\Domain.dll
+c:\users\ursin\documents\visual studio 2013\Projects\ColorVoter\Domain\obj\Debug\Domain.pdb
